@@ -1,8 +1,10 @@
 from django.db import models
 
 # Create your models here.
-def upload_to(instance, filename):
+def upload_to_images(instance, filename):
     return 'images/{filename}'.format(filename=filename)
+def upload_to_pdfs(instance, filename):
+    return 'pdf/{filename}'.format(filename=filename)
 
 class Categoria(models.Model):
     nombre = models.CharField(max_length=30)
@@ -11,8 +13,8 @@ class Libro(models.Model):
     autor = models.CharField(max_length=30)
     precio = models.FloatField()
     idioma = models.CharField(max_length=20)
-    portada = models.ImageField(upload_to=upload_to,blank=True)
-    file = models.ImageField()
+    portada = models.ImageField(upload_to=upload_to_images,blank=True)
+    file = models.FileField(upload_to=upload_to_pdfs,blank=True)
     categoria_id = models.ForeignKey(Categoria , on_delete=models.CASCADE)
 
 # class NotaPrestamo(models.Model):
