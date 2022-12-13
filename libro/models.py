@@ -11,9 +11,10 @@ class Categoria(models.Model):
 class Libro(models.Model):
     titulo = models.CharField(max_length=30)
     autor = models.CharField(max_length=30)
-    precio = models.FloatField()
     idioma = models.CharField(max_length=20)
     portada = models.ImageField(upload_to=upload_to_images,blank=True)
+    descripcion = models.TextField();
+    indice = models.TextField();
     file = models.FileField(upload_to=upload_to_pdfs,blank=True)
     categoria_id = models.ForeignKey(Categoria , on_delete=models.CASCADE)
 
